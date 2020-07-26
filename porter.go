@@ -53,7 +53,7 @@ func portscan(hostname string){
 		wg.Add(1)
 		go func(host string, ports []string){
 			for _, port := range ports {
-        		timeout := time.Second
+        		timeout := time.Millisecond * 300
         		conn, err := net.DialTimeout("tcp", net.JoinHostPort(host, port), timeout)
         		if err != nil {
             	continue
