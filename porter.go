@@ -39,17 +39,17 @@ func main(){
 
 func portscan(hostname string){
 	concurrency := 60
-	ports := make([]string,65535)
+	ports := make([]string,65536)
 	var wg sync.WaitGroup
 
-	for i := 1 ; i <= 65535 ; i++{
+	for i := 0 ; i <= 65535 ; i++{
 		ports[i-1] = strconv.Itoa(i)
 	}
 
 	start := 0
 
 	for j := 1; j <= concurrency; j++ {
-		end := (65535/concurrency)*j
+		end := (65536/concurrency)*j
 		wg.Add(1)
 		go func(host string, ports []string){
 			for _, port := range ports {
